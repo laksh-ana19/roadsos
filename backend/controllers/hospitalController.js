@@ -49,7 +49,7 @@ const getNearbyHospitals = async (req, res) => {
       out;
     `;
 
-    const url = `https://lz4.overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+    const url = `https://lz4.overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;s
 
     const response = await axios.get(url, {
       headers: {

@@ -11,6 +11,7 @@ const sosRoutes = require("./routes/sosRoutes");
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const Emergency = require("./models/Emergency");
 const trackingRoutes = require("./routes/trackingRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
@@ -33,6 +34,8 @@ app.use("/api/sos", sosRoutes);
 app.use("/api/hospitals", hospitalRoutes);
 
 app.use("/api/tracking", trackingRoutes);
+
+app.use("/api/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
   res.send("RoadSoS Backend Running");
