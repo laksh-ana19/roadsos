@@ -56,7 +56,42 @@ const getAllEmergencies = async (req, res) => {
   }
 };
 
+const updateEmergencyStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const { status } = req.body;
+
+    const updatedEmergency = await Emergency.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedEmergency) {
+      return res.status(404).json({
+        success: false,
+        message: "Emergency not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Emergency status updated",
+      emergency: updatedEmergency,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   createSOS,
   getAllEmergencies,
+  updateEmergencyStatus,
 };
