@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 
 const sosRoutes = require("./routes/sosRoutes");
 const hospitalRoutes = require("./routes/hospitalRoutes");
+const Emergency = require("./models/Emergency");
 
 const app = express();
 
@@ -47,13 +48,25 @@ io.on("connection", (socket) => {
   });
 
   // Live ambulance tracking
-  socket.on("ambulanceLocationUpdate", (data) => {
-    console.log("Live ambulance location:", data);
+  socket.on("ambulanceLocationUpdate", async (data) => {
+  console.log("Live ambulance location:", data);
+
+  try {
+    await Emergency.findByIdAndUpdate(data.emergencyId, {
+      ambulanceLocation: {
+        latitude: data.latitude,
+        longitude: data.longitude,
+        updatedAt: new Date(),
+      },
+    });
 
     const roomName = `emergency_${data.emergencyId}`;
 
     io.to(roomName).emit("ambulanceLocationUpdated", data);
-  });
+  } catch (error) {
+    console.error("Realtime tracking DB error:", error.message);
+  }
+});
 
   socket.on("disconnect", () => {
     console.log("Client disconnected:", socket.id);

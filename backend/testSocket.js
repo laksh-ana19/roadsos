@@ -2,7 +2,7 @@ const { io } = require("socket.io-client");
 
 const socket = io("http://localhost:5000");
 
-const emergencyId = "12345";
+const emergencyId = "6a0ad8ad5d0119814ee02562";
 
 socket.on("connect", () => {
   console.log("Connected to server");

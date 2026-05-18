@@ -18,6 +18,20 @@ const emergencySchema = new mongoose.Schema({
     },
   },
 
+  ambulanceLocation: {
+    latitude: {
+      type: Number,
+    },
+
+    longitude: {
+      type: Number,
+    },
+
+    updatedAt: {
+      type: Date,
+    },
+  },
+
   status: {
     type: String,
     enum: ["ACTIVE", "AMBULANCE_ASSIGNED", "COMPLETED"],
