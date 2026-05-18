@@ -37,10 +37,22 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("New client connected:", socket.id);
 
+  // Join emergency room
+  socket.on("joinEmergencyRoom", (emergencyId) => {
+    const roomName = `emergency_${emergencyId}`;
+
+    socket.join(roomName);
+
+    console.log(`Socket joined room: ${roomName}`);
+  });
+
+  // Live ambulance tracking
   socket.on("ambulanceLocationUpdate", (data) => {
     console.log("Live ambulance location:", data);
 
-    io.emit("ambulanceLocationUpdated", data);
+    const roomName = `emergency_${data.emergencyId}`;
+
+    io.to(roomName).emit("ambulanceLocationUpdated", data);
   });
 
   socket.on("disconnect", () => {
