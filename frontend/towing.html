@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nearby Towing Services</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/towing.css">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+</head>
+
+<body>
+
+<header class="topbar">
+  <h2>🔧 Nearby Towing Services</h2>
+  <a href="home.html">Back</a>
+</header>
+
+<div class="map-wrapper">
+
+  <div class="info-panel glass">
+
+    <h3>Nearby Towing & Assistance</h3>
+
+    <p id="statusText">
+      Searching nearby towing services...
+    </p>
+
+    <div id="towingList"></div>
+
+  </div>
+
+  <div id="map"></div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="js/towing.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nearby Repair Shops</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/repair.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body>
+
+<header class="topbar">
+  <h2>🛞 Nearby Repair Shops</h2>
+  <a href="home.html">Back</a>
+</header>
+
+<div class="map-wrapper">
+
+  <div class="info-panel glass">
+
+    <h3>Nearby Mechanic & Repair Centers</h3>
+
+    <p id="statusText">
+      Searching nearby repair shops...
+    </p>
+
+    <div id="repairList"></div>
+
+  </div>
+
+  <div id="map"></div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="js/repair.js"></script>
+
+</body>
+</html>

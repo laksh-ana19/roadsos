@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoadSoS - Recent Emergencies</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/emergencies.css">
+</head>
+
+<body>
+
+  <header class="topbar">
+    <h2>📂 Recent Emergencies</h2>
+    <a href="home.html">Back</a>
+  </header>
+
+  <div class="emergency-container">
+
+    <h3>Emergency Logs</h3>
+
+    <div id="emergencyList"></div>
+
+  </div>
+
+  <div id="offlineBanner" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:red;
+  color:white;
+  text-align:center;
+  padding:8px;
+  z-index:9999;
+  ">
+  </div>
+
+  <script src="js/emergencies.js"></script>
+
+</body>
+</html>

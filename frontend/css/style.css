@@ -1,0 +1,229 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0b0b0b, #000);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* =========================
+   GLASSMORPHISM BASE
+========================= */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+   CARD STYLE
+========================= */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 46, 46, 0.15);
+  transition: 0.25s ease;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #ff2e2e;
+  box-shadow: 0 0 25px rgba(255, 46, 46, 0.25);
+}
+
+/* =========================
+   TOPBAR
+========================= */
+.topbar {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  padding: 15px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(255, 46, 46, 0.4);
+}
+
+.title {
+  margin-left: auto;
+  color: #ff2e2e;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 46, 46, 0.5);
+  border-radius: 6px;
+  transition: 0.25s;
+}
+
+.topbar a:hover {
+  background: #ff2e2e;
+  box-shadow: 0 0 12px rgba(255, 46, 46, 0.4);
+}
+
+/* =========================
+   LANDING PAGE (FIXED VIBE)
+========================= */
+.landing-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+/* glowing background vibe */
+.landing-body::before,
+.landing-body::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.landing-body::before {
+  background: #ff2e2e;
+  top: 10%;
+  left: 10%;
+}
+
+.landing-body::after {
+  background: #ff7b00;
+  bottom: 10%;
+  right: 10%;
+}
+
+.landing-container {
+  max-width: 500px;
+  padding: 35px;
+  z-index: 1;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TEXT */
+.logo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ff2e2e;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.subtext {
+  color: #b5b5b5;
+  margin-bottom: 22px;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   BUTTON (UPGRADED)
+========================= */
+.start-btn {
+  background: linear-gradient(135deg, #ff2e2e, #ff7b00);
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 0 8px 25px rgba(255, 46, 46, 0.3);
+}
+
+.start-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 35px rgba(255, 46, 46, 0.5);
+}
+
+.start-btn:active {
+  transform: scale(0.97);
+}
+
+/* ripple glow */
+.start-btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s ease;
+}
+
+.start-btn:hover::after {
+  width: 220px;
+  height: 220px;
+}
+
+/* =========================
+   SOS BUTTON
+========================= */
+.sos-btn {
+  background: radial-gradient(circle, #ff3b3b, #5a0000);
+  box-shadow: 0 0 30px rgba(255, 46, 46, 0.7);
+}
+
+/* =========================
+   EMERGENCY CARD
+========================= */
+.emergency-card {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid #222;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: 0.25s;
+}
+
+.emergency-card:hover {
+  transform: scale(1.02);
+  border-color: #ff2e2e;
+}

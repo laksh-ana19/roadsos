@@ -1,0 +1,88 @@
+.map-wrapper{
+  display:flex;
+  height:calc(100vh - 70px);
+}
+
+.hospital-marker{
+  width:36px;
+  height:36px;
+
+  border-radius:50%;
+
+  background:rgba(255, 46, 46, 0.2);
+  border:2px solid #ff2e2e;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:18px;
+
+  animation:hospitalPulse 1.4s infinite ease-in-out;
+}
+
+/* simple pulse only */
+@keyframes hospitalPulse{
+  0%{
+    transform:scale(1);
+    box-shadow:0 0 0 rgba(255,46,46,0.4);
+  }
+  50%{
+    transform:scale(1.15);
+    box-shadow:0 0 10px rgba(255,46,46,0.3);
+  }
+  100%{
+    transform:scale(1);
+    box-shadow:0 0 0 rgba(255,46,46,0.4);
+  }
+}
+
+#map{
+  flex:1;
+  height:100%;
+}
+
+.info-panel{
+  width:320px;
+  padding:20px;
+  overflow-y:auto;
+
+  border-right:2px solid #ff2e2e;
+  background:rgba(15,15,15,0.9);
+}
+
+.info-panel h3{
+  color:#ff2e2e;
+  margin-bottom:15px;
+}
+
+.hospital-card{
+  margin-bottom:14px;
+  padding:14px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.hospital-card:hover{
+  border-color:#ff2e2e;
+  transform:translateY(-3px);
+  box-shadow:0 0 12px rgba(255,46,46,0.3);
+}
+
+.hospital-card h4{
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.hospital-card p{
+  color:#ccc;
+  font-size:0.9rem;
+  margin:4px 0;
+}

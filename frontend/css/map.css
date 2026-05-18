@@ -1,0 +1,101 @@
+/* 🌫️ GLASSMORPHISM BASE */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ✨ CARD UPGRADE */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 46, 46, 0.2);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #ff2e2e;
+  box-shadow: 0 0 20px rgba(255, 46, 46, 0.3);
+}
+
+/* 🔴 PREMIUM SOS BUTTON */
+.sos-btn {
+  background: radial-gradient(circle, #ff3b3b, #7a0000);
+  box-shadow: 0 0 25px rgba(255, 46, 46, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* TOPBAR UPGRADE */
+.topbar {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(10px);
+}
+.map-container {
+  display: flex;
+  height: 90vh;
+}
+
+/* MAP AREA */
+#map {
+  flex: 2;
+  height: 100%;
+}
+
+/* SIDE INFO PANEL */
+.info-panel {
+  flex: 1;
+  background: #111;
+  padding: 20px;
+  border-left: 2px solid #ff2e2e;
+}
+
+.info-panel h3 {
+  color: #ff2e2e;
+  margin-bottom: 15px;
+}
+
+.info-panel p {
+  margin: 10px 0;
+  color: #ccc;
+}
+
+/* EMERGENCY BLINK EFFECT */
+.info-panel p:first-of-type {
+  color: #ff2e2e;
+  font-weight: bold;
+}
+
+.emergency-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  color: #fff;
+
+  padding: 22px 35px;
+  border-radius: 16px;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  border: 2px solid #ff2d2d;
+
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  z-index: 9999;
+  text-align: center;
+}
+
+.emergency-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}

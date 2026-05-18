@@ -1,0 +1,92 @@
+.map-wrapper{
+  display:flex;
+  height:calc(100vh - 70px);
+}
+
+#map{
+  flex:1;
+  height:100%;
+}
+
+.info-panel{
+  width:320px;
+  padding:20px;
+  overflow-y:auto;
+
+  border-right:2px solid #ff2e2e;
+  background:rgba(15,15,15,0.9);
+}
+
+.info-panel h3{
+  color:#ff2e2e;
+  margin-bottom:15px;
+}
+
+.towing-card{
+  margin-bottom:14px;
+  padding:14px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.towing-card:hover{
+  border-color:#ffa500;
+  transform:translateY(-3px);
+  box-shadow:0 0 12px rgba(255,165,0,0.4);
+}
+
+.towing-card h4{
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.towing-card p{
+  color:#ccc;
+  font-size:0.9rem;
+  margin:4px 0;
+}
+
+/* 🔧 MARKER */
+.towing-marker{
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  background:#ffa500;
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:18px;
+
+  border:2px solid white;
+
+  box-shadow:0 0 14px rgba(255,165,0,0.8);
+
+  animation:pulseTow 1.4s infinite;
+}
+
+@keyframes pulseTow{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.12);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}

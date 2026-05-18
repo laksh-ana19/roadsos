@@ -1,0 +1,202 @@
+/* =========================
+   BASE
+========================= */
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #0b0b0b, #000);
+  overflow: hidden;
+}
+
+/* =========================
+   SPLASH LAYOUT
+========================= */
+
+.splash-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+
+.app-icon img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  border-radius: 20px; /* gives app icon vibe */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* glowing animated background */
+.bg-orbs::before,
+.bg-orbs::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  animation: float 6s ease-in-out infinite;
+}
+
+.bg-orbs::before {
+  background: #ff2e2e;
+  top: 15%;
+  left: 15%;
+}
+
+.bg-orbs::after {
+  background: #ff7b00;
+  bottom: 15%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* =========================
+   SPLASH CARD
+========================= */
+
+.splash-container {
+  z-index: 2;
+  background: rgba(12, 12, 12, 0.9);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(255, 46, 46, 0.2);
+  border-radius: 22px;
+
+  padding: 50px 40px;
+  width: 320px;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+
+  animation: boot 1s ease;
+}
+
+@keyframes boot {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   APP ICON
+========================= */
+
+.app-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.app-name {
+  color: #ff2e2e;
+  font-size: 2.4rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.status {
+  color: #b5b5b5;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  min-height: 20px;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #ff2e2e;
+  border-radius: 50%;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* =========================
+   BUTTON (ENTER APP)
+========================= */
+
+.enter-btn {
+  margin-top: 10px;
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #ff2e2e, #ff7b00);
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+
+  box-shadow: 0 10px 30px rgba(255,46,46,0.3);
+}
+
+.enter-btn:hover {
+  transform: scale(1.06);
+}
+
+.enter-btn:active {
+  transform: scale(0.95);
+}
+
+/* =========================
+   OFFLINE BAR
+========================= */
+
+#offlineBanner {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: none;
+
+  background: rgba(255, 46, 46, 0.92);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: 600;
+
+  z-index: 9999;
+}

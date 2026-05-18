@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RoadSoS</title>
+
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body class="splash-body">
+
+  <!-- background glow layer -->
+  <div class="bg-orbs"></div>
+
+  <!-- main splash screen -->
+  <div class="splash-container">
+
+    <div class="app-icon">
+       <img src="images/logo.png.png" alt="RoadSoS Logo" />
+    </div>
+
+    <h1 class="app-name">RoadSoS</h1>
+
+    <p class="status" id="statusText">Initializing emergency system...</p>
+
+    <div class="loader">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <button class="enter-btn" onclick="goToHome()">
+      Enter App
+    </button>
+
+  </div>
+
+  <div id="offlineBanner"></div>
+
+  <script>
+    // fake app boot sequence feel
+    const texts = [
+      "Initializing emergency system...",
+      "Connecting to rescue network...",
+      "Locating nearby services...",
+      "Ready to launch"
+    ];
+
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("statusText").innerText = texts[i];
+      i = (i + 1) % texts.length;
+    }, 1800);
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
