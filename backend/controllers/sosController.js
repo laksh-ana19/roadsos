@@ -90,8 +90,71 @@ const updateEmergencyStatus = async (req, res) => {
   }
 };
 
+const getEmergenciesByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const emergencies = await Emergency.find({ userId }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json({
+      success: true,
+      count: emergencies.length,
+      emergencies,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
+const getEmergencyResponseTime = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const emergency = await Emergency.findById(id);
+
+    if (!emergency) {
+      return res.status(404).json({
+        success: false,
+        message: "Emergency not found",
+      });
+    }
+
+    const start = emergency.timestamps.created;
+    const end = emergency.timestamps.completed;
+
+    if (!end) {
+      return res.status(400).json({
+        success: false,
+        message: "Emergency not completed yet",
+      });
+    }
+
+    const responseTimeMinutes = ((end - start) / 1000 / 60).toFixed(2);
+
+    res.status(200).json({
+      success: true,
+      emergencyId: id,
+      responseTimeMinutes,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   createSOS,
   getAllEmergencies,
   updateEmergencyStatus,
+  getEmergenciesByUser,
+  getEmergencyResponseTime,
 };
