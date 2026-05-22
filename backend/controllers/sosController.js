@@ -2,7 +2,7 @@ const Emergency = require("../models/Emergency");
 
 const createSOS = async (req, res) => {
   try {
-    const { userId, latitude, longitude } = req.body;
+    const { userId, latitude, longitude, voiceTriggered, keyword } = req.body;
 
     if (!userId || !latitude || !longitude) {
       return res.status(400).json({
@@ -13,11 +13,12 @@ const createSOS = async (req, res) => {
 
     const emergency = await Emergency.create({
       userId,
-
       location: {
-        latitude,
-        longitude,
+        type: "Point",
+        coordinates: [longitude, latitude],
       },
+      voiceTriggered: voiceTriggered || false,
+      status: "CREATED",
     });
 
     console.log("Emergency Stored:", emergency);
