@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const http = require("http");
 
 const { Server } = require("socket.io");
@@ -26,7 +27,7 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/sos", sosRoutes);
