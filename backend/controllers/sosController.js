@@ -1,4 +1,6 @@
 const Emergency = require("../models/Emergency");
+const EmergencyContact = require("../models/EmergencyContact");
+const sendSMS = require("../utils/sendSMS");
 
 const createSOS = async (req, res) => {
   try {
@@ -23,14 +25,46 @@ const createSOS = async (req, res) => {
 
     console.log("Emergency Stored:", emergency);
 
+    // =====================
+    // SEND SMS TO CONTACTS
+    // =====================
+    try {
+      const contacts = await EmergencyContact.find({
+        userId: userId || "guest"
+      });
+
+      if (contacts.length > 0) {
+        const mapsLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+
+        const message =
+          `🚨 SOS ALERT!\n` +
+          `Need help!\n` +
+          `📍 ${mapsLink}\n` +
+          `Via RoadSoS`;
+
+        for (const contact of contacts) {
+          await sendSMS(contact.phone, message);
+        }
+
+        console.log(`✅ SMS sent to ${contacts.length} contact(s)`);
+
+      } else {
+        console.log("⚠️ No contacts found to send SMS");
+      }
+
+    } catch (smsError) {
+      // SMS failure should NOT stop the SOS from being saved
+      console.error("❌ SMS sending failed:", smsError.message);
+    }
+
     res.status(201).json({
       success: true,
       message: "SOS triggered successfully",
       emergency,
     });
+
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       success: false,
       message: "Server Error",
@@ -49,7 +83,6 @@ const getAllEmergencies = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       success: false,
       message: "Server Error",
@@ -60,7 +93,6 @@ const getAllEmergencies = async (req, res) => {
 const updateEmergencyStatus = async (req, res) => {
   try {
     const { id } = req.params;
-
     const { status } = req.body;
 
     const updatedEmergency = await Emergency.findByIdAndUpdate(
@@ -83,7 +115,6 @@ const updateEmergencyStatus = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-
     res.status(500).json({
       success: false,
       message: "Server Error",

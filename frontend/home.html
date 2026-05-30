@@ -9,6 +9,36 @@
   <link rel="stylesheet" href="css/home.css" />
 </head>
 
+<!-- PRE-CACHE HOSPITALS IN BACKGROUND -->
+<script>
+  if (navigator.onLine && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var lat = pos.coords.latitude;
+      var lng = pos.coords.longitude;
+
+      localStorage.setItem("roadsos_last_lat",  JSON.stringify({data: lat, time: Date.now()}));
+      localStorage.setItem("roadsos_last_lng",  JSON.stringify({data: lng, time: Date.now()}));
+      localStorage.setItem("roadsos_location_time", JSON.stringify({data: Date.now(), time: Date.now()}));
+
+      var query = '[out:json];node["amenity"="hospital"](around:8000,' + lat + ',' + lng + ');out;';
+      var url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
+
+      fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.elements && data.elements.length > 0) {
+            var hospitals = data.elements.map(function(h) {
+              return { lat: h.lat, lon: h.lon, name: (h.tags && h.tags.name) || null };
+            });
+            localStorage.setItem("roadsos_hospitals", JSON.stringify({data: hospitals, time: Date.now()}));
+            console.log("✅ Hospitals pre-cached:", hospitals.length);
+          }
+        })
+        .catch(function() {});
+    }, function() {}, { timeout: 8000 });
+  }
+</script>
+
 <body>
 
 <header class="topbar">
@@ -51,6 +81,9 @@
   <div class="side-item" onclick="window.location.href='emergencies.html'">
      Recent Emergencies
   </div>
+  <div class="side-item" onclick="window.location.href='contacts.html'">
+    Emergency Contacts
+  </div>
 </div>
 
 
@@ -87,12 +120,59 @@
 </div>
 
 <script src="js/sos.js"></script>
-
 <script src="js/voicekeywords.js"></script>
 <script src="js/voicesos.js"></script>
 <script src="js/sosTrigger.js"></script>
 <script src="js/offlinesos.js"></script>
-<script src="js/smssos.js"></script>
+
+<!-- SYNC MONGODB CONTACTS INTO LOCALSTORAGE FOR SMS -->
+<script>
+  // SYNC CONTACTS
+  fetch("http://localhost:5000/api/contacts/guest")
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.success && data.contacts && data.contacts.length > 0) {
+        var simplified = data.contacts.map(function(c) {
+          return { name: c.name, phone: c.phone };
+        });
+        localStorage.setItem("roadsos_contacts", JSON.stringify(simplified));
+        console.log("✅ Contacts synced from MongoDB:", simplified.length, "contacts");
+      }
+    })
+    .catch(function() {
+      console.log("⚠️ Could not sync contacts — backend may be offline. Using cached contacts.");
+    });
+
+  // PRE-CACHE HOSPITALS IN BACKGROUND
+  if (navigator.onLine && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var lat = pos.coords.latitude;
+      var lng = pos.coords.longitude;
+
+      // Save location
+      localStorage.setItem("roadsos_last_lat",  JSON.stringify({data: lat, time: Date.now()}));
+      localStorage.setItem("roadsos_last_lng",  JSON.stringify({data: lng, time: Date.now()}));
+      localStorage.setItem("roadsos_location_time", JSON.stringify({data: Date.now(), time: Date.now()}));
+
+      // Fetch and cache hospitals silently
+      var query = '[out:json];node["amenity"="hospital"](around:8000,' + lat + ',' + lng + ');out;';
+      var url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
+
+      fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.elements && data.elements.length > 0) {
+            var hospitals = data.elements.map(function(h) {
+              return { lat: h.lat, lon: h.lon, name: (h.tags && h.tags.name) || null };
+            });
+            localStorage.setItem("roadsos_hospitals", JSON.stringify({data: hospitals, time: Date.now()}));
+            console.log("✅ Hospitals pre-cached:", hospitals.length);
+          }
+        })
+        .catch(function() {});
+    }, function() {}, { timeout: 8000 });
+  }
+</script>
 
 </body>
 </html>

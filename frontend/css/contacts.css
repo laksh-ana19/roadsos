@@ -1,0 +1,266 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#000;
+    overflow-x:hidden;
+    box-sizing:border-box;
+}
+
+/* =========================
+   HEADER FIX (NO CUT OFF)
+========================= */
+.page-header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:14px 24px 14px 20px;
+
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.06);
+
+    z-index:9999;
+    box-sizing:border-box;
+}
+
+/* TITLE */
+.page-title{
+    color:#fff;
+    font-size:1.6rem;
+    font-weight:700;
+
+    max-width:60%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* BACK BUTTON FULL VISIBLE */
+.back-btn{
+    padding:10px 16px;
+    font-size:14px;
+
+    color:#fff;
+    background:rgba(0,0,0,0.6);
+
+    border:1px solid #ff4d4d;
+    border-radius:10px;
+
+    cursor:pointer;
+    transition:0.25s ease;
+
+    flex-shrink:0;
+    white-space:nowrap;
+    min-width:80px;
+}
+
+.back-btn:hover{
+    background:#FF3B3B;
+    border-color:#ff7b00;
+    color:#000;
+}
+
+/* =========================
+   MAIN
+========================= */
+.contacts-container{
+    padding:110px 20px 100px;
+    max-width:900px;
+    margin:auto;
+}
+
+.contacts-subtitle{
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+/* GRID */
+.contacts-grid{
+    display:grid;
+    gap:20px;
+}
+
+/* =========================
+   CARD
+========================= */
+.contact-card{
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+
+    padding:20px;
+
+    transition:0.3s ease;
+}
+
+.contact-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,123,0,0.5);
+}
+
+.contact-name{
+    color:#fff;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.contact-phone{
+    color:#ddd;
+    margin-top:8px;
+}
+
+.contact-relation{
+    color:#ff7b00;
+    font-size:0.9rem;
+    margin-top:6px;
+}
+
+/* =========================
+   ACTION BUTTONS (HORIZONTAL FIX)
+========================= */
+.actions{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    margin-top:12px;
+    align-items:center;
+}
+
+.edit-btn,
+.delete-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:8px 12px;
+    border-radius:10px;
+
+    border:none;
+    cursor:pointer;
+
+    white-space:nowrap;
+    flex:0 0 auto;
+}
+
+/* COLORS */
+.edit-btn{
+    background:#ff7b00;
+    color:#fff;
+}
+
+.delete-btn{
+    background:#ff2e2e;
+    color:#fff;
+}
+
+.edit-btn:hover,
+.delete-btn:hover{
+    opacity:0.85;
+}
+
+/* =========================
+   FLOAT BUTTON
+========================= */
+.fab{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#ff2e2e,#ff7b00);
+    color:white;
+    font-size:2rem;
+
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(255,46,46,0.4);
+    transition:0.3s;
+}
+
+.fab:hover{
+    transform:scale(1.08);
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,0.7);
+    z-index:1000;
+}
+
+.modal-content{
+    width:90%;
+    max-width:420px;
+
+    background:#111;
+    border:1px solid rgba(255,123,0,0.25);
+
+    border-radius:18px;
+    padding:25px;
+}
+
+.modal-content h2{
+    color:#fff;
+    margin-bottom:20px;
+}
+
+.modal-content input{
+    width:100%;
+    box-sizing:border-box;
+
+    margin-bottom:15px;
+    padding:12px;
+
+    border-radius:12px;
+    border:none;
+
+    background:#1b1b1b;
+    color:white;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.cancel-btn,
+.save-btn,
+.delete-btn{
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:#333;
+    color:white;
+}
+
+.save-btn,
+.delete-btn{
+    background:#FF3B3B;
+    color:white;
+}

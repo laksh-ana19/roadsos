@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Contacts - RoadSoS</title>
+<link rel="stylesheet" href="css/contacts.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+    <h1 class="page-title">Emergency Contacts</h1>
+    <button class="back-btn" onclick="goHome()">Back</button>
+</div>
+
+<!-- CONTENT -->
+<div class="contacts-container">
+
+    <p class="contacts-subtitle">
+        These contacts will receive SMS alerts when SOS is activated.
+    </p>
+
+    <!-- Loading state -->
+    <div id="loadingMsg" style="color:#aaa; text-align:center; padding:30px;">
+        Loading contacts...
+    </div>
+
+    <div class="contacts-grid" id="contactsGrid"></div>
+
+</div>
+
+<!-- FLOAT BUTTON -->
+<button class="fab" onclick="openModal()">+</button>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal" id="contactModal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Add Emergency Contact</h2>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="text" id="relation" placeholder="Relationship">
+        <div class="modal-buttons">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <button class="save-btn" onclick="saveContact()">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h2>Delete Contact?</h2>
+        <p style="color:#aaa;margin-bottom:20px;">
+            This contact will be permanently removed.
+        </p>
+        <div class="modal-buttons">
+            <button class="cancel-btn" onclick="closeDeleteModal()">Cancel</button>
+            <button class="delete-btn" onclick="confirmDelete()">Delete</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/contacts.js"></script>
+
+</body>
+</html>

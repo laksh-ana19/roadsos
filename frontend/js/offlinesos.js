@@ -3,7 +3,7 @@
 
   var API_BASE = "http://localhost:5000";
   var SOS_API = "/api/sos/";
-  var CONTACTS_API = "/api/contacts/";
+  var CONTACTS_API = "/api/contacts/guest";
   var DB_NAME = "RoadSoSOfflineDB";
   var DB_VERSION = 1;
   var STORE_SOS = "sos_queue";

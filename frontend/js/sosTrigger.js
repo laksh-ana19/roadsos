@@ -200,7 +200,7 @@
         emergency._id,
         "dispatched"
       );
-    }, 3000);
+    }, 8000);
 
     onTriggerSuccess(
       emergency,
@@ -231,7 +231,7 @@
     localStorage.setItem(
       "roadsos_emergency_time",
       new Date().toISOString()
-    );
+    );    
 
     var popup =
       document.getElementById(
@@ -257,7 +257,7 @@
       window.location.href =
         "ambulance.html?emergencyId=" +
         emergency._id;
-    }, 3000);
+    }, 8000);
   }
 
   function handleAmbulanceUpdate(data) {
